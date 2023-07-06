@@ -38,3 +38,22 @@ DESCRIPTION:
 - `SolutionPath` : The Path to the folder that contains the files that are solutions if the recognition was successful (here `MyProject_corrected`)
 - `ResultPath` : The Path to the folder that will contain the Output, it needs to be empty
 
+
+## Output
+
+The output is divided in 2 fields: 
+- the console
+- the log files
+
+### The console 
+- It displays a colorful logging of every files that could not been matched, with reasons.
+
+- It also include statistics at the end to translate the operations done in number
+![image](https://github.com/Ofghanirre/IdralwelVersionRefactor/assets/18609818/43470aeb-7066-40a5-9c8a-3e10b07c95b1)
+
+### The log files
+
+For each and every type of reason for 2 files not matching, there is a log_file to archive it !
+> The logs are created in a folder called "logs"
+![image](https://github.com/Ofghanirre/IdralwelVersionRefactor/assets/18609818/c457484f-be25-4b3b-98b4-836b5977f9dc)
+
