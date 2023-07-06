@@ -1,0 +1,77 @@
+<configuration>
+    <appender name="CONSOLE_LOGGER" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%msg%n</pattern>
+        </encoder>
+    </appender>
+    <appender name="FILES_DIFFERENT_LOGGER" class="ch.qos.logback.core.FileAppender">
+        <file>./logs/different.log</file>
+        <append>false</append>
+        <encoder class="ch.qos.logback.core.encoder.LayoutWrappingEncoder">
+            <layout class="ch.qos.logback.classic.PatternLayout">
+                <pattern>%msgCleaned%n</pattern>
+            </layout>
+        </encoder>
+    </appender>
+    <appender name="FILES_ABSENT_IN_SOURCE_LOGGER" class="ch.qos.logback.core.FileAppender">
+        <file>./logs/absent_in_source.log</file>
+        <append>false</append>
+        <encoder class="ch.qos.logback.core.encoder.LayoutWrappingEncoder">
+            <layout class="ch.qos.logback.classic.PatternLayout">
+                <pattern>%msgCleaned%n</pattern>
+            </layout>
+        </encoder>
+    </appender>
+    <appender name="FILES_ABSENT_IN_REGISTER_LOGGER" class="ch.qos.logback.core.FileAppender">
+        <file>./logs/absent_in_register.log</file>
+        <append>false</append>
+        <encoder class="ch.qos.logback.core.encoder.LayoutWrappingEncoder">
+            <layout class="ch.qos.logback.classic.PatternLayout">
+                <pattern>%msgCleaned%n</pattern>
+            </layout>
+        </encoder>
+    </appender>
+    <appender name="FILES_FROM_SOLUTION_LOGGER" class="ch.qos.logback.core.FileAppender">
+        <file>./logs/from_solution.log</file>
+        <append>false</append>
+        <encoder class="ch.qos.logback.core.encoder.LayoutWrappingEncoder">
+            <layout class="ch.qos.logback.classic.PatternLayout">
+                <pattern>%msgCleaned%n</pattern>
+            </layout>
+        </encoder>
+    </appender>
+    <appender name="FILE_DELETED_IN_SOLUTION_LOGGER" class="ch.qos.logback.core.FileAppender">
+        <file>./logs/deleted_in_solution.log</file>
+        <append>false</append>
+        <encoder class="ch.qos.logback.core.encoder.LayoutWrappingEncoder">
+            <layout class="ch.qos.logback.classic.PatternLayout">
+                <pattern>%msgCleaned%n</pattern>
+            </layout>
+        </encoder>
+    </appender>
+
+    <conversionRule conversionWord="msgCleaned" converterClass="fr.idralwel.versionrefactor.utils.log.CleanMessageConverter" />
+
+    <logger name="FILES_DIFFERENT_LOGGER" level="info">
+        <appender-ref ref="FILES_DIFFERENT_LOGGER" />
+    </logger>
+    <logger name="FILES_ABSENT_IN_SOURCE_LOGGER" level="info">
+        <appender-ref ref="FILES_ABSENT_IN_SOURCE_LOGGER" />
+    </logger>
+    <logger name="FILES_ABSENT_IN_REGISTER_LOGGER" level="info">
+        <appender-ref ref="FILES_ABSENT_IN_REGISTER_LOGGER" />
+    </logger>
+
+    <logger name="FILES_FROM_SOLUTION_LOGGER" level="info">
+        <appender-ref ref="FILES_FROM_SOLUTION_LOGGER" />
+    </logger>
+
+    <logger name="FILE_DELETED_IN_SOLUTION_LOGGER" level="info">
+        <appender-ref ref="FILE_DELETED_IN_SOLUTION_LOGGER" />
+    </logger>
+
+
+    <root level="info">
+        <appender-ref ref="CONSOLE_LOGGER"/>
+    </root>
+</configuration>

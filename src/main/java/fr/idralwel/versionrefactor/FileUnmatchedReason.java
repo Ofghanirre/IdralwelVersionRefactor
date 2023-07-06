@@ -1,6 +1,7 @@
 package fr.idralwel.versionrefactor;
 
 import fr.idralwel.versionrefactor.utils.log.AnsiColor;
+import org.slf4j.Logger;
 
 import java.nio.file.Path;
 
@@ -11,7 +12,8 @@ enum EFileUnmatchedReason {
     DIFFERENT,
     ABSENT_IN_SOURCE,
     ABSENT_IN_REGISTER,
-    FILE_FROM_SOLUTION;
+    FILE_FROM_SOLUTION,
+    FILE_DELETED_IN_SOLUTION;
 
     AnsiColor getColor() {
         return switch (this) {
@@ -28,7 +30,7 @@ public record FileUnmatchedReason(Path file, EFileUnmatchedReason reason) {
 
     public static FileUnmatchedReason createAndLog(Path file, EFileUnmatchedReason reason) {
         FileUnmatchedReason result = new FileUnmatchedReason(file, reason);
-        FileComparator.LOGGER.warning(result.toString());
+        getLogger(reason).warn(result.toString());
         return result;
     }
     
@@ -36,6 +38,17 @@ public record FileUnmatchedReason(Path file, EFileUnmatchedReason reason) {
         return switch (this.reason) {
             case ABSENT_IN_SOURCE -> ANSI_RED + "-" + ANSI_WHITE;
             default -> ANSI_GREEN + "+" + ANSI_WHITE;
+        };
+    }
+
+    private static Logger getLogger(EFileUnmatchedReason reason) {
+        return switch (reason) {
+            case DIFFERENT -> Main.FILES_DIFFERENT_LOGGER;
+            case ABSENT_IN_SOURCE -> Main.FILES_ABSENT_IN_SOURCE_LOGGER;
+            case ABSENT_IN_REGISTER -> Main.FILES_ABSENT_IN_REGISTER_LOGGER;
+            case FILE_FROM_SOLUTION -> Main.FILES_FROM_SOLUTION_LOGGER;
+            case FILE_DELETED_IN_SOLUTION -> Main.FILE_DELETED_IN_SOLUTION_LOGGER;
+            default -> Main.CONSOLE_LOGGER;
         };
     }
 

@@ -12,7 +12,7 @@ public class FileComparatorStats {
 
     @Override
     public String toString() {
-        return  ANSI_GREEN + "Statistics :" + ANSI_RESET +
+        return  "Statistics :" + ANSI_RESET +
                 "\n\t" + ANSI_BLUE + "- Files Compared:\t" + ANSI_CYAN + fileCompared +
                 "\n\t" + ANSI_BLUE + "- Files Matched: \t" + ANSI_CYAN + fileMatched +
                 "\n\t" + ANSI_BLUE + "- Files UnMatched:\t" + ANSI_CYAN + fileUnMatched +

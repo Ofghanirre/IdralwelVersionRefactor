@@ -23,14 +23,6 @@ public class FileComparator {
     private final Path resultPath;
     private final FileComparatorStats stats = new FileComparatorStats();
     private final List<FileUnmatchedReason> filesUnmatched = new ArrayList<>();
-    protected static final Logger LOGGER = Logger.getLogger("IdralwelVersionRefactor");
-
-    static {
-        ConsoleHandler handler = new ConsoleHandler();
-        handler.setFormatter(new LogFormatter());
-        LOGGER.setUseParentHandlers(false);
-        LOGGER.addHandler(handler);
-    }
 
     public FileComparator(Path sourcePath, Path registerPath, Path solutionPath, Path resultPath) {
         this.sourcePath = sourcePath;
@@ -40,13 +32,13 @@ public class FileComparator {
     }
 
     public FileComparatorStats compare() {
-        LOGGER.info(ANSI_GREEN + "Starting Refactor Operation !");
-        LOGGER.info(ANSI_GREEN + "You will get logs about unmatched files here:");
-        LOGGER.info("");
+        Main.CONSOLE_LOGGER.info(ANSI_GREEN + "Starting Refactor Operation !");
+        Main.CONSOLE_LOGGER.info(ANSI_GREEN + "You will get logs about unmatched files here:");
+        Main.CONSOLE_LOGGER.info("");
         this.compareRecursively(this.sourcePath, this.registerPath, this.solutionPath, this.resultPath);
-        LOGGER.info("");
-        LOGGER.info(ANSI_GREEN + "End of Refactor Operation !" + ANSI_RESET);
-        List.of(this.stats.toString().split("\n")).forEach(LOGGER::info);
+        Main.CONSOLE_LOGGER.info("");
+        Main.CONSOLE_LOGGER.info(ANSI_GREEN + "End of Refactor Operation !" + ANSI_RESET);
+        List.of(this.stats.toString().split("\n")).forEach(Main.CONSOLE_LOGGER::info);
         return this.stats;
     }
 
@@ -66,7 +58,7 @@ public class FileComparator {
             folders.forEach(path -> compareRecursively(sourcePath.resolve(path), registerPath.resolve(path),
                     solutionPath.resolve(path), resultPath.resolve(path)));
         } else {
-            Main.DEBUG_LOGGER.warning("Unhandled file type (not a dir nor a file): '" + sourcePath +"', ignoring...");
+            Main.CONSOLE_LOGGER.warn("Unhandled file type (not a dir nor a file): '" + sourcePath +"', ignoring...");
         }
     }
 
