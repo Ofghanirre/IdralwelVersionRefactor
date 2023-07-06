@@ -33,11 +33,11 @@ public class FileComparator {
 
     public FileComparatorStats compare() {
         Main.CONSOLE_LOGGER.info(ANSI_GREEN + "Starting Refactor Operation !");
-        Main.CONSOLE_LOGGER.info(ANSI_GREEN + "You will get logs about unmatched files here:");
+        Main.CONSOLE_LOGGER.info(ANSI_GREEN + "You will get logs about unmatched files here:" + ANSI_WHITE);
         Main.CONSOLE_LOGGER.info("");
         this.compareRecursively(this.sourcePath, this.registerPath, this.solutionPath, this.resultPath);
         Main.CONSOLE_LOGGER.info("");
-        Main.CONSOLE_LOGGER.info(ANSI_GREEN + "End of Refactor Operation !" + ANSI_RESET);
+        Main.CONSOLE_LOGGER.info(ANSI_GREEN + "End of Refactor Operation !" + ANSI_WHITE);
         List.of(this.stats.toString().split("\n")).forEach(Main.CONSOLE_LOGGER::info);
         return this.stats;
     }
@@ -81,6 +81,10 @@ public class FileComparator {
                 this.filesUnmatched.add(FileUnmatchedReason.createAndLog(sourcePath, EFileUnmatchedReason.ABSENT_IN_REGISTER));
                 return Optional.of(sourcePath);
             }
+        } else if (!Files.exists(solutionPath)) {
+            this.stats.fileDeletedInSolution++;
+            this.filesUnmatched.add(FileUnmatchedReason.createAndLog(sourcePath, EFileUnmatchedReason.FILE_DELETED_IN_SOLUTION));
+            return Optional.empty();
         }
         try {
             if (FileUtils.contentEquals(sourcePath.toFile(), registerPath.toFile())) {

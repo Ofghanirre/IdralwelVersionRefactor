@@ -22,6 +22,6 @@ public class LogFormatter extends Formatter {
     private static final Map<Level, AnsiColor> levelColor = Map.of(Level.FINE, ANSI_GREEN, Level.INFO, ANSI_WHITE, Level.WARNING, ANSI_YELLOW, Level.SEVERE, ANSI_RED);
     @Override
     public String format(LogRecord record) {
-        return ANSI_CYAN + "[" + record.getLoggerName() + "]" + ANSI_PURPLE + " | " + ANSI_RESET + levelColor.getOrDefault(record.getLevel(), ANSI_WHITE) + record.getLevel() + "\t" + ANSI_WHITE + ": " + record.getMessage() + "\n";
+        return ANSI_CYAN + "[" + record.getLoggerName() + "]" + ANSI_PURPLE + " | " + ANSI_WHITE + levelColor.getOrDefault(record.getLevel(), ANSI_WHITE) + record.getLevel() + "\t" + ANSI_WHITE + ": " + record.getMessage() + "\n";
     }
 }

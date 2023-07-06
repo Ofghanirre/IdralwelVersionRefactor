@@ -21,7 +21,8 @@ enum EFileUnmatchedReason {
             case ABSENT_IN_SOURCE -> ANSI_RED;
             case ABSENT_IN_REGISTER -> ANSI_PURPLE;
             case FILE_FROM_SOLUTION -> ANSI_BLUE;
-            default -> ANSI_RESET;
+            case FILE_DELETED_IN_SOLUTION -> ANSI_RED;
+            default -> ANSI_WHITE;
         };
     }
 }
@@ -36,7 +37,7 @@ public record FileUnmatchedReason(Path file, EFileUnmatchedReason reason) {
     
     private String getSign() {
         return switch (this.reason) {
-            case ABSENT_IN_SOURCE -> ANSI_RED + "-" + ANSI_WHITE;
+            case ABSENT_IN_SOURCE, FILE_DELETED_IN_SOLUTION -> ANSI_RED + "-" + ANSI_WHITE;
             default -> ANSI_GREEN + "+" + ANSI_WHITE;
         };
     }
@@ -54,6 +55,6 @@ public record FileUnmatchedReason(Path file, EFileUnmatchedReason reason) {
 
     @Override
     public String toString() {
-        return "File Unmatched [" + this.getSign() + "] '" + file.toString() + "', reason: " +  reason.getColor() + reason.name() + ANSI_RESET;
+        return "File Unmatched [" + this.getSign() + "] '" + file.toString() + "', reason: " +  reason.getColor() + reason.name() + ANSI_WHITE;
     }
 }
