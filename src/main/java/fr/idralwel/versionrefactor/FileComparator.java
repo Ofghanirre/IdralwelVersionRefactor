@@ -92,6 +92,7 @@ public class FileComparator {
                 return Optional.of(solutionPath);
             } else {
                 this.stats.fileUnMatched++;
+                this.stats.fileDifferent++;
                 this.filesUnmatched.add(FileUnmatchedReason.createAndLog(sourcePath, EFileUnmatchedReason.DIFFERENT));
             }
         } catch (IOException e) {
