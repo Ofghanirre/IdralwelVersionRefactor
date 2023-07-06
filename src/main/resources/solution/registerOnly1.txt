@@ -1,0 +1,2 @@
+Ce fichier n'est uniquement présent dans le register
+Il ne doit donc pas figurer dans le résultat

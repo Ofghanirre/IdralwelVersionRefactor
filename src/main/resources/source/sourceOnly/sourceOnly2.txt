@@ -1,0 +1,2 @@
+Ce fichier n'est uniquement présent dans la source
+Il doit donc figurer dans le resultat tel quel

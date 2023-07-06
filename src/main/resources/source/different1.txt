@@ -1,0 +1,2 @@
+Ce fichier possède une version dans la source différente de celle de dans register
+Source
