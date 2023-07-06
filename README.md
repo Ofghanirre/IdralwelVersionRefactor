@@ -25,7 +25,13 @@ Well this program is made to translate every file that can be replaced by your c
 ## User Manual
 The program has to be called with the following arguments:
 
-**REQUIRED**: `SourcePath` `RegisterPath` `SolutionPath` `ResultPath`
+**COMMAND**:
+`./jarname SourcePath registerPath SolutionPath ResultPath` 
+> Where jarname is the name of your jar (made out of the project files)
+
+
+**ARGS REQUIRED**: `SourcePath` `RegisterPath` `SolutionPath` `ResultPath`
+
 DESCRIPTION:
 - `SourcePath` : The Path to the folder that contains the files that you want to translate (here `MyProjectV1.0.0`)
 - `RegisterPath` : The Path to the folder that contains the files to be compared with (here `MyProjectV1.0.1`)
