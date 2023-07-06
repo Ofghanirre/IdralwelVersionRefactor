@@ -9,7 +9,11 @@ import java.util.function.Predicate;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-public class FileQuery {
+public final class FileQuery {
+
+    private FileQuery() {
+        throw new UnsupportedOperationException();
+    }
     private static List<Path> openFolder(Path path) {
         if (Files.exists(path)) {
             try (Stream<Path> result = Files.list(path)) {
