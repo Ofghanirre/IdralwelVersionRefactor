@@ -5,7 +5,10 @@ import org.apache.commons.io.FileUtils;
 import java.io.IOException;
 import java.nio.file.Path;
 
-public class FileCopier {
+public final class FileCopier {
+    private FileCopier() {
+        throw new UnsupportedOperationException();
+    }
     public static void copyFile(Path copiedPath, Path destinationPath) {
         try {
             FileUtils.copyFile(copiedPath.toFile(), destinationPath.toFile());
